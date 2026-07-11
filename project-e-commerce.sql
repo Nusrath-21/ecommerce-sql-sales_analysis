@@ -114,6 +114,14 @@ SELECT
   ROUND(100.0 * COUNT(*) FILTER (WHERE payment_method = 'Cash on Delivery') / COUNT(*), 2) AS cod_percentage
 FROM orders;
 
+-- Order Status & Cancellation Rate
+SELECT order_status, COUNT(*) AS num_orders
+FROM orders
+GROUP BY order_status;
+
+SELECT ROUND(100.0 * COUNT(*) FILTER (WHERE order_status = 'Cancelled') / COUNT(*), 1) AS cancellation_rate
+FROM orders;
+
 -- Bigger realistic dataset: 30 customers, 15 products, 100 orders
 
 TRUNCATE order_items, orders, products, customers RESTART IDENTITY CASCADE;
