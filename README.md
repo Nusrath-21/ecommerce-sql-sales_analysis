@@ -17,3 +17,30 @@ Key Findings
 3. Delivered Orders: 81 out of 100
 4. Average Order Value (AOV): ₹16,287.65
 5. Top 5 Customers by RevenueMonthly Revenue Trend
+
+## Extended Analysis (Product, Customer & Operations)
+
+Beyond the initial revenue and payment analysis, this project also covers:
+
+- **Best-selling products & category mix** — Electronics accounts for 57% of total revenue, driven heavily by a single product (Laptop)
+- **Order cancellation rate** — 19% of all orders are cancelled, flagged as an operational concern
+- **City-wise revenue** — Delhi leads in total revenue, but Kolkata shows higher revenue-per-customer
+- **Customer loyalty** — 79% of customers are repeat buyers, indicating strong retention
+
+## Python Analysis & Visualization
+
+In addition to the SQL queries above, this project includes a Python layer (Pandas + Matplotlib) for deeper analysis and dashboard-style visualizations:
+- `analysis.py` — summary dashboard (revenue, payment methods, top customers)
+- `analysis_extended.py` — deep-dive dashboard (products, categories, cities, loyalty)
+- `Ecommerce_Orders_Analysis.ipynb` — full Kaggle notebook combining SQL + Python + narrative insights
+
+**📊 Live notebook on Kaggle:** [https://www.kaggle.com/code/nusrathbegum/e-commerce-sales-analysis]
+
+**Files included:**
+| File | Description |
+|---|---|
+| `project.sql` | All SQL queries used in the analysis |
+| `analysis.py` / `analysis_extended.py` | Python scripts for charts |
+| `Ecommerce_Orders_Analysis.ipynb` | Full Kaggle-ready notebook |
+| `*.csv` | Raw data tables (customers, orders, order_items, products) |
+| `ecommerce_dashboard*.png` | Static dashboard exports |
