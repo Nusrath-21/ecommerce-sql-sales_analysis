@@ -481,3 +481,48 @@ INSERT INTO order_items (order_item_id, order_id, product_id, quantity, unit_pri
 (199, 99, 3, 2, 7000),
 (200, 100, 8, 3, 900),
 (201, 100, 2, 3, 2500);
+
+-- ============================================
+-- Best-Selling Products (Revenue)
+-- ============================================
+SELECT p.product_name, SUM(oi.quantity * oi.unit_price) AS product_revenue
+FROM order_items oi
+JOIN orders o ON oi.order_id = o.order_id
+JOIN products p ON oi.product_id = p.product_id
+WHERE o.order_status = 'Delivered'
+GROUP BY p.product_name
+ORDER BY product_revenue DESC
+LIMIT 8;
+
+-- ============================================
+-- Revenue by Category
+-- ============================================
+SELECT p.category, SUM(oi.quantity * oi.unit_price) AS category_revenue
+FROM order_items oi
+JOIN orders o ON oi.order_id = o.order_id
+JOIN products p ON oi.product_id = p.product_id
+WHERE o.order_status = 'Delivered'
+GROUP BY p.category
+ORDER BY category_revenue DESC;
+
+-- ============================================
+-- City-Wise Revenue
+-- ============================================
+SELECT c.city, SUM(oi.quantity * oi.unit_price) AS city_revenue
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+JOIN order_items oi ON o.order_id = oi.order_id
+WHERE o.order_status = 'Delivered'
+GROUP BY c.city
+ORDER BY city_revenue DESC
+LIMIT 6;
+
+-- ============================================
+-- Customer Loyalty: Orders per Customer
+-- (repeat vs one-time buyers, computed from this result in Python/Excel)
+-- ============================================
+SELECT customer_id, COUNT(*) AS num_orders
+FROM orders
+WHERE order_status = 'Delivered'
+GROUP BY customer_id
+ORDER BY num_orders DESC;
